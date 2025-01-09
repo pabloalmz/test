@@ -1,0 +1,36 @@
+name: CI Pipeline for Node.js
+
+on:
+  push:
+    branches:
+      - main  # A pipeline será acionada quando houver um push para a branch main.
+  pull_request:
+    branches:
+      - main  # A pipeline também será acionada para pull requests na branch main.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # A pipeline será executada em uma máquina Ubuntu.
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Faz o checkout do código para o ambiente da pipeline.
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'  # Define a versão do Node.js a ser usada. (Alterar conforme necessário)
+    
+    - name: Install dependencies
+      run: |
+        npm install  # Instala as dependências do projeto.
+    
+    - name: Run tests
+      run: |
+        npm test  # Executa os testes. (Altere para outro comando se não houver testes configurados)
+
+    - name: Build the application
+      run: |
+        npm run build  # Se você tiver um script de build, ele será executado aqui. 
+                        # Caso contrário, pode ser removido.
+
