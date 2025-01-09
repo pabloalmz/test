@@ -9,7 +9,7 @@ on:
       - main  # A pipeline também será acionada para pull requests na branch main.
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest  # A pipeline será executada em uma máquina Ubuntu.
     
     steps:
@@ -27,10 +27,5 @@ jobs:
     
     - name: Run tests
       run: |
-        npm test  # Executa os testes. (Altere para outro comando se não houver testes configurados)
-
-    - name: Build the application
-      run: |
-        npm run build  # Se você tiver um script de build, ele será executado aqui. 
-                        # Caso contrário, pode ser removido.
+        npm test  # Executa os testes com o Jest.
 
